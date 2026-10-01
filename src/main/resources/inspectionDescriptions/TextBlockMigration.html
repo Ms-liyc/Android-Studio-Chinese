@@ -1,0 +1,34 @@
+<html>
+<body>
+报告可通过替换为文本块来简化的 <code>String</code> 串联。
+<p>要求：</p>
+<ul>
+  <li><code>\n</code> 发生两次或多次。</li>
+  <li>文本块未串联。</li>
+</ul>
+<p>
+使用<b>报告单个字符串字面量</b>选项可以高亮显示包含换行符的单个字面量。
+即使禁用此选项，该快速修复仍然可用。
+<p>
+<p><b>示例：</b></p>
+<pre><code>
+  String html = "&lt;html&gt;\n" +
+                "    &lt;body&gt;\n" +
+                "        &lt;p&gt;Hello, world&lt;/p&gt;\n" +
+                "    &lt;/body&gt;\n" +
+                "&lt;/html&gt;\n";
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  String html = """
+                &lt;html&gt;
+                    &lt;body&gt;
+                        &lt;p&gt;Hello, world&lt;/p&gt;
+                    &lt;/body&gt;
+                &lt;/html&gt;
+                """;
+</code></pre>
+<!-- tooltip end -->
+<p><small>2019.3 最新变化</small></p>
+</body>
+</html>

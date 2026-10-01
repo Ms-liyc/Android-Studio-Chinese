@@ -1,0 +1,21 @@
+<html>
+<body>
+报告可能在其声明中添加了 <code>final</code> 修饰符的局部变量或形参。
+<p>示例：</p>
+<pre><code>
+  ArrayList&lt;Integer&gt; list = new ArrayList();
+  fill(list);
+  return list;
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  final ArrayList&lt;Integer&gt; list = new ArrayList();
+  fill(list);
+  return list;
+</code></pre>
+<!-- tooltip end -->
+<p>
+  使用该检查的选项可以定义应报告哪些类型的形参或局部变量。
+</p>
+</body>
+</html>

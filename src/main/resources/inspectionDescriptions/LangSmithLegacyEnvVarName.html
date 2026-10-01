@@ -1,0 +1,14 @@
+<html>
+<body>
+<p>
+  报告通过 <code>os.getenv(...)</code>、<code>os.environ.get(...)</code> 或 <code>os.environ[...]</code> 读取了已弃用的 <code>LANGCHAIN_*</code> 环境变量，并建议使用规范的 <code>LANGSMITH_*</code> 名称。
+</p>
+<p><b>示例：</b></p>
+<pre><code lang="Python">
+import os
+
+api_key = os.getenv("LANGCHAIN_API_KEY")
+</code></pre>
+<p>该快速修复会将名称替换为其规范的 <code>LANGSMITH_*</code> 形式。</p>
+</body>
+</html>

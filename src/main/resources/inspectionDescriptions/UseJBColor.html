@@ -1,0 +1,22 @@
+<html>
+<body>
+报告 <code>java.awt.Color</code> 的用法。
+<p>
+  这可能无法检测到“深色”主题（例如，捆绑的“Darcula”），因而可能导致 UI 效果不佳。
+</p>
+<p>
+  快速修复会将用法替换为 <code>JBColor</code>，后者可以定义“深色”颜色变体。
+</p>
+<p>示例：</p>
+<pre><code lang="java">
+// 错误：
+Color darkGreen = new Color(12, 58, 27);
+Color blue = Color.BLUE;
+
+// 正确：
+Color darkGreen = new JBColor(12, 58, 27);
+Color blue = JBColor.BLUE;
+Color green = new JBColor(new Color(12, 58, 27), new Color(27, 112, 39));
+</code></pre>
+</body>
+</html>

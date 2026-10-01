@@ -1,0 +1,13 @@
+<html>
+<body>
+报告以小写声明的类型形参。
+<p>官方 Go 文档中的示例使用大写的类型形参。
+  此检查遵循类型形参的这种大写规则。</p>
+<pre><code>func PrintSlice[t any](s []t) {
+    for _, v := range s{
+        print(v)
+    }
+}</code></pre>
+<p>类型形参 <code>t</code> 以小写声明，因此将被报告。</p>
+</body>
+</html>

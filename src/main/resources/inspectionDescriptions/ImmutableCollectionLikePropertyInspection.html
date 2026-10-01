@@ -1,0 +1,32 @@
+<html>
+<body>
+报告 JPA 实体中不可变集合的用法。
+<p>
+  检测使用具有不可变集合类型（<code>List</code>、<code>Set</code>、<code>Map</code>）的 <code>@OneToMany</code> 或 <code>@ManyToMany</code> 注解的属性。
+  建议使用可变集合类型（<code>MutableList</code>、<code>MutableSet</code>、<code>MutableMap</code>）来确保 Hibernate 兼容性。
+</p>
+<p>
+  嵌入代码段：
+</p>
+<pre><code>
+@Entity
+open class User(
+  @Id
+  val id: Long = 0L,
+  @OneToMany
+  val orders: List<Order> = listOf(),
+)
+</code></pre>
+应用该快速修复后：
+<pre><code>
+@Entity
+open class User(
+  @Id
+  val id: Long = 0L,
+  @OneToMany
+  val orders: MutableList<Order> = mutableListOf(),
+)
+</code></pre>
+<!-- tooltip end -->
+</body>
+</html>

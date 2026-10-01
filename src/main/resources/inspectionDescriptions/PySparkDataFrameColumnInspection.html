@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>
+  报告试图访问架构中不存在的 PySpark DataFrame 列的情况。
+</p>
+<p><b>示例：</b></p>
+<pre><code lang="Python">
+df = spark.createDataFrame(data=[(“John”, 10),
+                                 (“Anakin”, 20),
+                                 (“Luke”, 30)],
+                           schema=[“name”, “age”])
+df.select(“unknown_column”)
+</code></pre>
+</body>
+</html>

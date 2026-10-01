@@ -1,0 +1,21 @@
+<html>
+<body>
+使用 <code>STR</code> 处理器报告字符串模板表达式，并提供快速修复以迁移回纯字符串串联。
+
+<p><b>示例：</b></p>
+<pre><code>
+  String name = "Bob";
+  String greeting = STR."Hello, \{name}. You are 29 years old.";
+</code></pre>
+
+<p>在应用快速修复后：</p>
+<pre><code>
+  String name = "Bob";
+  String greeting = "Hello, " + name + ". You are 29 years old.";
+</code></pre>
+
+<!-- tooltip end -->
+
+<p><small>2024.2 最新变化</small></p>
+</body>
+</html>

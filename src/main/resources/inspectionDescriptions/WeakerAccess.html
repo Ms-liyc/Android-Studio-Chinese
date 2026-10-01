@@ -1,0 +1,25 @@
+<html>
+<body>
+报告可能缩小其访问修饰符范围的字段、方法或类。
+<p>示例：</p>
+<pre><code>
+  class Sample {
+    void foo() {
+        bar("foo", "foo");
+    }
+    void bar(String x, String y) { } // 可以为 private
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  class Sample {
+    void foo() {
+        bar("foo", "foo");
+    }
+    private void bar(String x, String y) { }
+  }
+</code></pre>
+<!-- tooltip end -->
+<p>使用检查选项可以定义修饰符更改建议的规则。</p>
+</body>
+</html>

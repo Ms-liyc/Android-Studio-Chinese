@@ -1,0 +1,29 @@
+<html>
+<body>
+报告可被设为 <code>static</code> 而不会产生任何错误的实例初始值设定项。
+<p>
+  如果实例初始值设定项不引用其类的任何非 static 成员，则可以为 static。
+  static 初始值设定项在类解析后执行，而实例初始值设定项在类每次实例化时执行。</p>
+<p>此检查不报告匿名类中的实例空初始值设定项和初始值设定项。
+<p><b>示例：</b></p>
+<pre><code>
+  class A {
+     public static String CONSTANT;
+     {
+        CONSTANT = "Hello";
+     }
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  class A {
+     public static String CONSTANT;
+     static {
+        CONSTANT = "Hello"; // 现在每个类仅实例化一次
+     }
+  }
+</code></pre>
+
+<!-- tooltip end -->
+</body>
+</html>

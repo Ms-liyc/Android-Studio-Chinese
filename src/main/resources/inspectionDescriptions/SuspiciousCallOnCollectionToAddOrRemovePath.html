@@ -1,0 +1,48 @@
+<html>
+<body>
+<p>报告使用实参类型实现 `Iterable`，且接收者是具有相同元素类型的 Kotlin `Collection` 或 `Sequence` 的 `plus`/`minus`。
+</p>
+<p>如果实参类型实现了 `Iterable`，则会将其视为元素集合，而不是单个元素。
+    这可能会意外地添加或移除多个元素，而不是针对对象本身进行操作。</p>
+<p>一个常见的例子是 `java.nio.file.Path`，它实现了 `Iterable&lt;Path&gt;`（遍历其名称元素）。
+    因此，使用 `+` 或 `-` 将 `Path` 添加到 `Collection&lt;Path&gt;` 可能会作用于其组成部分，而不是整个 `Path` 实例。</p>
+<p>该检查包括运算符语法（`a + b`、`a - b`）和显式调用（`a.plus(b)`、`a.minus(b)`）两种形式。</p>
+<p><b>示例：</b></p>
+<pre><code>
+// 运算符形式
+val paths = listOf(path) + somePath
+val paths2 = setOf(path) - somePath
+
+// 常规调用形式
+val paths = listOf(path).plus(somePath)
+val paths2 = setOf(path).minus(somePath)
+
+// 序列
+val seq = sequenceOf(path) + somePath
+
+// 路径 + 路径（两侧都可迭代）
+val combined = path1 + path2  // 返回段列表，而不是组合路径
+</code></pre>
+
+<p><b>快速修复：</b></p>
+<ul>
+    <li>转换为 <code>plusElement</code>/<code>minusElement</code>（将语义更改为最初的意图）：
+        <pre><code>
+val paths = listOf(path).plusElement(somePath)
+val paths2 = setOf(path).minusElement(somePath)
+val paths3 = sequenceOf(path).plusElement(somePath)
+    </code></pre>
+    </li>
+    <li>将 <code>Path</code> 实参转换为集合，以澄清意图而不改变语义：
+        <ul>
+            <li>对于 <code>plus</code>：使用 <code>toList()</code> 包装实参以保持顺序。</li>
+            <li>对于 <code>minus</code>：使用 <code>toSet()</code> 包装实参以提高移除效率。</li>
+        </ul>
+        <pre><code>
+val paths = listOf(path).plus(somePath.toList())
+val paths2 = setOf(path).minus(somePath.toSet())
+    </code></pre>
+    </li>
+</ul>
+</body>
+</html>

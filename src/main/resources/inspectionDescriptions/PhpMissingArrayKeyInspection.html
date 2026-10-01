@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <p>
+      报告未提供数组形状中定义的所有所需键/条目的数组。
+    </p>
+    <p>
+      此检查有助于识别数组实例化可能因缺少必需条目而导致运行时问题的场景，以确保更好的代码一致性并遵循定义的结构。
+    </p>
+    <p>
+      嵌入代码段：
+    </p>
+    <pre><code>
+      function connect(#[ArrayShape([
+          'path' => 'string',
+          'host' => [
+              'name' => 'string',
+              'port' => 'int'
+          ]
+      ])] array $options = []) { };
+      connect(['host' => ['name' => 'localhost', 'port' => 1234]]); // 缺少 'path' 键
+    </code></pre>
+  </body>
+</html>

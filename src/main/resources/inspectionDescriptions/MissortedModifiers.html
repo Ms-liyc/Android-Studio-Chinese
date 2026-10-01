@@ -1,0 +1,18 @@
+<html>
+<body>
+报告修饰符不符合规范首选顺序（如 Java 语言规范中所述）的声明。
+<p><b>示例：</b></p>
+<pre><code>
+  class Foo {
+    native public final void foo();
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  class Foo {
+    public final native void foo();
+  }
+</code></pre>
+<!-- tooltip end -->
+</body>
+</html>

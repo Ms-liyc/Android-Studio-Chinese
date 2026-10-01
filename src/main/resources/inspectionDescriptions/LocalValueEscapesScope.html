@@ -1,0 +1,12 @@
+<html>
+<body>
+报告对转义函数的局部值的引用
+<p><b>示例：</b></p>
+<pre><code>
+  int *escapeLocalScope() {
+    int lv = 100;
+    return &#38lv;
+  }
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<body>
+报告在 <code>defer</code> 和 <code>go</code> 语句中的 <code>func</code> 字面量内对循环变量的引用。
+  此类变量可能具有意外值，因为它们没有被复制到 <code>func</code> 字面量中，并且 <code>defer</code> 和 <code>go</code> 中的 <code>func</code> 字面量不会立即执行。
+
+<p>有关闭包和 goroutine 的详细信息，请参阅 <a href="https://go.dev/doc/faq#closures_and_goroutines">go.dev 上的 What happens with closures running as goroutines? </a>。</p>
+<p>示例：</p>
+<pre><code>for _, v := range []string{"a", "b", "c"} {
+  go func() {
+    fmt.Println(v) // 输出可能会是 `c c c`，而不是 `a b c`。
+  }()
+}</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>for _, v := range []string{"a", "b", "c"} {
+  v := v // `v` 现已被复制
+  go func() {
+    fmt.Println(v)
+  }()
+}</code></pre>
+<!-- tooltip end -->
+<p>请注意，仅当 <code>defer</code> 和 <code>go</code> 语句是循环主体中的最后一条语句时，分析器才会检查它们。
+  否则，分析可能会产生错误的检测结果。</p>
+</body>
+</html>

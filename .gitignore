@@ -1,0 +1,27 @@
+.gradle/
+build/
+out/
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+
+# 从 IDE 提取的原始英文资源（体积大）
+translations/en/
+translations/en-new/
+translations/work/zh-CN-backup-*/
+
+# 构建产物
+*.zip
+build/tmp/
+
+# 下载的参考包
+build/tmp/zh-pack.jar
+
+# 本地状态（保留 config/glossary）
+translations/.state.json
+translations/work/progress.json
+translations/work/progress.html
+translations/work/merge-changelog.txt

@@ -1,0 +1,36 @@
+<html>
+<body>
+报告对将其形参转换为字符串的 static 方法（例如 <code>String.valueOf()</code> 或 <code>Integer.toString()</code>）的不必要调用。
+在字符串串联中使用时，此类调用是不必要的。
+<p>示例：</p>
+<pre><code>
+  System.out.println("Number: " + Integer.toString(count));
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  System.out.println("Number: " + count);
+</code></pre>
+此外，用作进行自身字符串转换的库方法的实参时，此类调用是不必要的。
+一些进行自身字符串转换的库方法的示例如下：
+<ul>
+  <li>
+    类 <code>java.io.PrintWriter</code>, <code>java.io.PrintStream</code>
+    <ul><li><code>print()</code>, <code>println()</code></li></ul>
+  </li>
+  <li>
+    类 <code>java.lang.StringBuilder</code>, <code>java.lang.StringBuffer</code>
+    <ul><li><code>append()</code></li></ul>
+  </li>
+
+  <li>
+    类 <code>org.slf4j.Logger</code>
+    <ul>
+      <li><code>trace()</code>, <code>debug()</code>, <code>info()</code>, <code>warn()</code>, <code>error()</code></li>
+    </ul>
+  </li>
+</ul>
+<!-- tooltip end -->
+<p>
+  使用<b>报告可被替换为带空字符串的串联的调用</b>选项还可以报告可使用带空字符串的串联代替 <code>String.valueOf()</code> 调用的情况。
+</body>
+</html>

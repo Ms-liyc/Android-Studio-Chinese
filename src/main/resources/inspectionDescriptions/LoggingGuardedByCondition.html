@@ -1,0 +1,27 @@
+<html>
+<body>
+报告被保护条件包围的日志记录调用。
+此检查可用于调整自定义代码样式。
+<p><b>示例：</b></p>
+<pre><code lang="java">
+  public class TestObject {
+    void test(Object object) {
+      if(LOG.isDebugEnabled()){
+        LOG.debug("some logging " + expensiveCalculation(1));
+      }
+    }
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code lang="java">
+  public class TestObject {
+    void test(Object object) {
+      LOG.debug("some logging " + expensiveCalculation(1));
+    }
+  }
+</code></pre>
+<p>此检查支持 <em>Log4j2</em> 和 <em>SLF4J</em> 日志记录框架（ 构建器除外）。
+<!-- tooltip end -->
+<p><small>2024.2 最新变化</small></p>
+</body>
+</html>

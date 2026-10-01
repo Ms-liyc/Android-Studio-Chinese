@@ -1,0 +1,17 @@
+<html>
+<body>
+报告整个项目中在不更改的情况下复制的字符串字面量。
+提供了两个快速修复。 一个是为重复的字符串引入一个常量并在整个项目中使用它，另一个是显示特定字符串字面量的所有重复项的位置。
+<p>示例：</p>
+<pre><code>
+  class C1 { String CONST1 = "duplicate string"; }
+  class C2 { String CONST2 = "duplicate string"; }
+</code></pre>
+<!-- tooltip end -->
+<p>配置检查：</p>
+<ul>
+  <li>使用<b>最小字符串长度</b>字段设置检测重复项所需的最小字符串长度。</li>
+  <li>使用<b>忽略@PropertyKey 表达式</b>选项可忽略作为实参传递给使用 <code> org.jetbrains.annotations.PropertyKey </code> 注解的方法的字符串。</li>
+</ul>
+</body>
+</html>

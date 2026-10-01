@@ -1,0 +1,24 @@
+<html>
+<body>
+报告 <code>kotlin.coroutines.suspendCoroutine</code> 的用法，并建议在出现 <code>kotlinx.coroutines</code> 依赖项时将其替换为 <code>kotlinx.coroutines.suspendCancellableCoroutine</code>。
+<p>
+    <code>suspendCancellableCoroutine</code> 变体提供了内置的取消支持，这对于结构化并发和正确的资源管理非常重要。
+</p>
+<p><b>示例：</b></p>
+<pre><code>
+    suspend fun usage(): String {
+        return suspendCoroutine { continuation ->
+            continuation.resume("Hello!")
+        }
+    }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+    suspend fun usage(): String {
+        return suspendCancellableCoroutine { continuation ->
+            continuation.resume("Hello!")
+        }
+    }
+</code></pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<body>
+报告使用 Java 和 Kotlin 语言将非安全字符串作为 SQL 查询传递给方法的情况。
+这可能是 SQL 注入的一个原因。
+方法列表取自<b>设置</b> - <code>SQL</code>、<code>JPA QL</code>、<code>Hibernate QL</code> 和 <code>PostgreSQL</code> 的<b>语言注入</b>
+<p>
+  安全对象为：
+<ul>
+  <li>字符串字面量、接口实例或枚举对象、int 及其包装器、布尔及其包装器、类对象</li>
+  <li>方法的调用结果，该方法的接收器和实参是安全的</li>
+  <li>同一文件中的 private 字段，仅使用字符串字面量赋值，并具有安全的初始值设定项</li>
+  <li>同一文件中的 final 字段，具有安全的初始值设定项</li>
+  <li>从安全对象赋值的局部变量</li>
+</ul>
+此字段、局部变量或形参不得作为实参传递给方法或用作限定符，或者必须是基元、其包装器或不可变对象。
+
+static final 字段被认为是安全的。
+<p>
+  该分析仅在一个文件内执行。
+  示例：
+<pre>
+<code lang="java">
+    public void save(String sql) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.queryForList(sql);
+    }
+</code>
+</pre>
+
+<!-- tooltip end -->
+<p><small>2023.2 最新变化</small></p>
+</body>
+</html>

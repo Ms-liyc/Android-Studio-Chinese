@@ -1,0 +1,16 @@
+<html>
+<body>
+在 <code>module-info.java</code> 中报告违反 Java 平台模块系统
+<a href="http://mail.openjdk.org/pipermail/jpms-spec-experts/2017-March/000659.html">建议</a>的模块名称，以
+避免通过在模块名称末尾添加一个或多个数字来编码版本信息。
+<p><b>示例：</b></p>
+<pre><code>
+ module foo.bar2 {}
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  module foo.bar {}
+</code></pre>
+<!-- tooltip end -->
+</body>
+</html>

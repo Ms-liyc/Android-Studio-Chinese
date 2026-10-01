@@ -1,0 +1,23 @@
+<html>
+<body>
+<p>报告可转换为 <code>data object</code> 的 <code>object</code></p>
+<p><code>data object</code> 会自动生成 <code>toString</code>、<code>equals</code> 和 <code>hashCode</code></p>
+<p>该检查会在以下 2 中情况下建议将 <code>object</code> 转换为 <code>data object</code>：</p>
+<ul>
+    <li>当自定义 <code>toString</code> 返回类的名称时</li>
+    <li>当 <code>object</code> 继承 sealed <code>class</code>/<code>interface</code> 时</li>
+</ul>
+<p><b>示例：</b></p>
+<pre><code>
+    object Foo {
+        override fun toString(): String = "Foo"
+    }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+    数据对象 Foo
+</code></pre>
+<!-- tooltip end -->
+<p>仅当项目或模块的 Kotlin 语言级别为 1.9 或更高时，此检查才会报告</p>
+</body>
+</html>

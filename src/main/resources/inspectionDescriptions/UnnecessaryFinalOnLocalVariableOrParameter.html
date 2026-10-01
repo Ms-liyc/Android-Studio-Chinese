@@ -1,0 +1,30 @@
+<html>
+<body>
+报告不必要地声明为 <code>final</code> 的局部变量或形参。
+<p>出于简洁的原因，某些编码标准不赞成声明为 <code>final</code> 的变量。</p>
+<p><b>示例：</b></p>
+<pre><code>
+  class Foo {
+    Foo(Object o) {}
+
+    void bar(final Object o) {
+      new Foo(o);
+    }
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  class Foo {
+    Foo(Object o) {}
+
+    void bar(Object o) {
+      new Foo(o);
+    }
+  }
+</code></pre>
+<!-- tooltip end -->
+<p>
+  使用该检查的选项可以定义应报告哪些类型的形参或局部变量。
+</p>
+</body>
+</html>

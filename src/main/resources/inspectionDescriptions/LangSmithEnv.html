@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>
+  报告 <code>.env</code> 文件中的 LangSmith 配置错误，这些错误会静默禁用跟踪或导致运行时错误：已弃用的 <code>LANGCHAIN_*</code> 密钥（规范名称为 <code>LANGSMITH_*</code>）、设置为不同值的旧版密钥和现代密钥、非小写字符串 <code>true</code> 的跟踪标志、错误的区域端点主机（例如，<code>eu.smith.langchain.com</code> 而非 <code>eu.api.smith.langchain.com</code>）、缺失的 API 密钥，以及从未启用的跟踪。
+</p>
+<p><b>有问题的配置示例：</b></p>
+<pre><code>
+LANGCHAIN_TRACING_V2=True
+LANGCHAIN_API_KEY=lsv2_sk_...
+LANGCHAIN_ENDPOINT=https://eu.smith.langchain.com
+</code></pre>
+<p>快速修复会按规范形式重命名密钥，将跟踪值规范化，纠正端点主机，并插入缺失的密钥。</p>
+<p>该检查仅在依赖于 <code>langsmith</code>、<code>langchain</code> 或 <code>langgraph</code> 的项目中运行。</p>
+</body>
+</html>

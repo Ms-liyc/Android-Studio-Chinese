@@ -1,0 +1,27 @@
+<html>
+<body>
+报告接受任意数量形参的方法（也称为 vararg 方法）。
+<p><b>示例：</b></p>
+<pre><code>
+  enum EnumConstants {
+  A(null), B, C;
+
+  EnumConstants(String... ss) {}
+}
+</code></pre>
+<p>可通过快速修复将可变实参形参替换为等效的数组形参。 方法调用中的相关实参包装在数组初始值设定项表达式中。
+  在应用快速修复后：</p>
+<pre><code>
+  enum EnumConstants {
+  A(null), B(new String[]{}), C(new String[]{});
+
+  EnumConstants(String[] ss) {}
+}
+</code></pre>
+<!-- tooltip end -->
+<p>
+  <i>Varargs 方法</i>在 Java 5 中出现。
+  此检查有助于为向后兼容早期 Java 版本而降级。
+</p>
+</body>
+</html>

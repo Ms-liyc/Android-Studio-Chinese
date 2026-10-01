@@ -1,0 +1,26 @@
+<html>
+<body>
+报告可以替换为常规字符串字面量的文本块。 
+此检查有助于为向后兼容早期 Java 版本而降级。
+<p><b>示例：</b></p>
+<pre><code>
+  Object obj = engine.eval("""
+                           function hello() {
+                             print('"Hello, world"');
+                           }
+
+                           hello();
+                           """);
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  Object obj = engine.eval("function hello() {\n" +
+                           "  print('\"Hello, world\"');\n" +
+                           "}\n" +
+                           "\n" +
+                           "hello();\n");
+</code></pre>
+<!-- tooltip end -->
+<p><small>2019.3 最新变化</small></p>
+</body>
+</html>

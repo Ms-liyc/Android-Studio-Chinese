@@ -1,0 +1,16 @@
+<html>
+<body>
+报告变量可能具有 <code>nil</code> 或意外值的实例，因为未检查关联错误是否为非 nil，如 <code>v, err := foo()</code> 中。
+<p>该快速修复会将函数从此检查的范围中移除。</p>
+<p>示例：</p>
+<pre><code>
+func _() {
+    file, err := os.Open("file.txt")
+    // 这里省略了错误检查
+    name := file.Name()
+    print(name, err)
+}
+</code></pre>
+<p>在提供的示例中，<code>file</code> 可能为 <code>nil</code>，或者在 <code>err</code> 不为 <code>nil</code> 时具有意外值。</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+<body>
+报告由于它们所影响的检查在此上下文中不再适用而可以安全移除的下列元素：
+<ul>
+  <li><code>@SuppressWarning</code> 注解或</li>
+  <li><code>// noinspection</code> 行注释，或</li>
+  <li><code>/** noinspection */</code> JavaDoc 注释</li>
+</ul>
+<p>示例：</p>
+<pre><code lang="java">
+public class C {
+ // 符号已经为 private，
+ // 但周围仍有注解
+  @SuppressWarnings({"WeakerAccess"})
+ private boolean CONST = true;
+ void f() {
+    CONST = false;
+  }
+}
+</code></pre>
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<body>
+<p>报告源类型和目标类型不相关的 <code>typing.cast</code> 调用。</p>
+<p>当源类型既不是目标类型的子类型，目标类型也不是源类型的子类型时，将报告错误。
+  此类转换通常指示逻辑错误，因为一种类型的实例不能被假定为另一种类型的实例，并且 <code>typing.cast</code> 不会动态验证类型。</p>
+
+<p>此检查甚至适用于理论上可能具有共同后代的类型。
+  例如，它将标记两个同级类 <code>Left</code> 和 <code>Right</code> 之间的转换，因为它们都继承自 <code>Top</code>，但彼此之间没有直接继承关系。</p>
+
+<p><b>示例：</b></p>
+<pre><code>
+from typing import cast
+
+# 非重叠类型 — 可能是错误
+<b>cast(int, "a")</b>          # 'str' -> 'int'
+<b>cast(list[int], ["a"])</b>  # 'list[str]' -> 'list[int]'
+
+# 推荐的显式逃生舱口是使用“双重转换”
+cast(int, <b>cast(object, "a")</b>)  # 正确
+
+# 合法的重叠情况
+cast(int, object())    # 有效的向下转换
+cast(object, 1)        # 有效的向上转换
+
+# 默认情况下，会忽略泛型类型实参的变体，因此，尽管 <code>list</code> 是不变的，
+# 也不会报告以下情况
+int_list = [1, 2, 3]
+cast(list[object], int_list)  # 正确
+</code></pre>
+<!-- tooltip end -->
+<p>该检查依赖于静态类型信息；当类型未知时，不会报告警告。</p>
+
+<p>使用<b>忽略泛型类型实参的差异</b>选项可以控制是否考虑泛型类型实参的差异。 启用（默认设置）后，将忽略差异：只要相应类型实参位于同一继承层次结构中，就允许强制转换，因此即使 <code>list</code> 不变，也不会报告 <code>cast(list[object], int_list)</code>。 禁用此选项还会报告只有其（不变）类型实参不同的转换。</p>
+
+<p>使用<b>忽略 TypedDict 结构(将 TypedDict 视为 dict)</b>选项来控制是否将 <code>TypedDict</code> 视为普通字典。 启用（默认设置）后，允许将 <code>dict</code> 转换为 <code>TypedDict</code>（或反向转换），因为 <code>TypedDict</code> 在运行时为 <code>dict</code>：</p>
+<pre><code>
+from typing import TypedDict, cast
+
+class TD(TypedDict):
+    x: int
+
+data: dict[str, object]
+cast(TD, data)  # ok
+</code></pre>
+<p>禁用此选项可在字典结构与 <code>TypedDict</code> 不匹配时报告此类转换。</p>
+</body>
+</html>

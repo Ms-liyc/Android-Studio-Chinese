@@ -1,0 +1,38 @@
+<html>
+<body>
+报告局部变量声明和访问器，以记录增强型 'for' 语句（这些语句通常更紧凑）中可被替换为模式变量的组件。
+<p><b>示例：</b></p>
+<pre><code>
+record Record(Integer x, String y) {
+}
+
+public static void test(List&lt;Record&gt; records) {
+    for (Record record : records) {
+        System.out.println(record.y());
+        Integer x = record.x;
+        System.out.println(x);
+    }
+}
+</code></pre>
+<p>可以替换为：</p>
+<pre><code>
+record Record(Integer x, String y) {
+}
+
+public static void test(List&lt;Record&gt; records) {
+    for (Record(Integer x, String y) : records) {
+        System.out.println(y);
+        System.out.println(x);
+    }
+}
+</code></pre>
+<!-- tooltip end -->
+<ul>
+  <li>使用<b>嵌套深度限制</b>选项指定要报告的最大嵌套析构模式数</li>
+  <li>使用<b>要析构的记录组件的最大数量</b>选项指定要在析构模式中使用的记录可以包含的组件的最大数量</li>
+  <li>使用<b>未使用的记录组件的最大数量</b>选项指定 <code>for</code> 语句中未使用的组件的最大数量</li>
+</ul>
+
+<p><small>2023.1 最新变化</small></p>
+</body>
+</html>

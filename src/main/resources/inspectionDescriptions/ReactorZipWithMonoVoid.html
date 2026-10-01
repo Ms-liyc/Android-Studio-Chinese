@@ -1,0 +1,24 @@
+<html>
+<body>
+<p>报告包含在 Reactor 链内具有 <code>Mono&lt;Void&gt;</code> 返回值的实参的 zip 操作 。</p>
+
+<p>
+  <code>Zip</code> 会在传入 <code>Mono&lt;Void&gt;</code> 完成后立即完成空操作。
+  该快速修复会建议将 <code>zip()</code>、<code>zipWhen()</code> 和 <code>zipWith()</code> 替换为 <code>when</code>。
+</p>
+<!-- tooltip end -->
+<p><b>示例：</b></p>
+<pre><code lang="java">Mono.zip(Mono.just(1), Mono.fromRunnable(() -> System.out.println("value")))
+                .map(v -> "New value")
+                .doFinally(System.out::println);
+</code></pre>
+
+<p>在应用快速修复后：</p>
+<pre><code lang="java">Mono.when(Mono.just(1), Mono.fromRunnable(() -> System.out.println("value")))
+                .then(Mono.fromCallable(() -> "New value"))
+                .doFinally(System.out::println);
+</code></pre>
+
+<p><small>2023.1 最新变化</small></p>
+</body>
+</html>

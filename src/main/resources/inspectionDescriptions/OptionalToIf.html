@@ -1,0 +1,25 @@
+<html>
+<body>
+报告可替换为 <code>if</code> 语句序列的 <code>Optional</code> 调用链。
+<p>示例：</p>
+<pre><code>
+  return Optional.ofNullable(name)
+    .map(this::extractInitials)
+    .map(initials -> initials.toUpperCase(Locale.ENGLISH))
+    .orElseGet(this::getDefault);
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  if (name != null) {
+    String initials = extractInitials(name);
+    if (initials != null) return initials.toUpperCase(Locale.ENGLISH);
+  }
+  return getDefault();
+</code></pre>
+<!-- tooltip end -->
+<p>
+  此检查有助于为向后兼容早期 Java 版本而降级。
+</p>
+<p><small>2020.2 最新变化</small></p>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>
+  报告在同一文件中的 <code>langchain</code>、<code>langsmith</code> 或 <code>langgraph</code> import 之后运行的 <code>load_dotenv()</code> 调用。 这些 SDK 在导入时会读取并缓存跟踪配置，因此随后的 <code>load_dotenv()</code> 会被忽略而不会产生任何错误，并且跟踪功能会保持禁用状态。
+</p>
+<p><b>示例：</b></p>
+<pre><code lang="Python">
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+</code></pre>
+<p>该快速修复会将 <code>load_dotenv()</code> 及其 import 移至 LangChain/LangSmith import 之上。</p>
+</body>
+</html>

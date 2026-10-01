@@ -1,0 +1,32 @@
+<html>
+<body>
+报告带模式的 <code>instanceof</code>，并建议将其转换为带转换的普通 <code>instanceof</code>。
+<p>通过应用快速修复，此检查可以将带模式的 <code>instanceof</code> 移到使用早期 Java 版本的代码库。</p>
+<p>
+  请注意，在 <code>instanceof</code> 前面使用复杂表达式时，结果不能完全等同于带模式的原始 <code>instanceof</code>。 在这种情况下，将对该表达式重新求值。
+</p>
+<!-- tooltip end -->
+<p>示例：</p>
+<pre><code>
+  if (object instanceof String txt && txt.length() == 1) {
+      System.out.println(txt);
+  } else {
+      return;
+  }
+  System.out.println(txt);
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  if (object instanceof String && ((String) object).length() ==1) {
+      String txt = (String) object;
+      System.out.println(txt);
+  } else {
+      return;
+  }
+  String txt = (String) object;
+  System.out.println(txt);
+</code></pre>
+<!-- tooltip end -->
+<p><small>2023.1 最新变化</small></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<body>
+报告始终具有相同常量值的方法形参。
+
+<p>示例：</p>
+<pre><code>
+  static void printPoint(int x, int y) { // x 始终为 0
+    System.out.println(x + ", " + y);
+  }
+
+  public static void main(String[] args) {
+    printPoint(0, 1);
+    printPoint(0, 2);
+  }
+</code></pre>
+<p>该快速修复会内联常量值。 这可能会简化方法实现。</p>
+<!-- tooltip end -->
+<p>
+  在以下情况下，使用<b>当无法提供快速修复时忽略</b>选项来禁止检查：
+</p>
+<ul>
+  <li>形参在方法内部被修改</li>
+  <li>传递的形参值是对不可访问字段的引用（仅限 Java）</li>
+  <li>形参为 vararg（仅限 Java）</li>
+</ul>
+<p>
+  使用<b>最大方法可见性</b>选项可以控制要报告的方法的最大可见性。
+</p>
+<p>
+  使用<b>要报告形参的最小方法用法计数</b>字段可以指定具有相同形参值的最小方法用法数。
+</p>
+</body>
+</html>

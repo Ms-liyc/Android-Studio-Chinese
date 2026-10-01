@@ -1,0 +1,22 @@
+<html>
+<body>
+报告类型转换表达式，其中转换后的表达式具有既不扩展/实现转换类/接口类型的类/接口类型，也没有进行上述操作的子类。
+<p>
+  此类结构很可能是错误的，并将在运行时抛出 <code>java.lang.ClassCastException</code>。
+</p>
+<p><b>示例：</b></p>
+<pre><code>
+  interface A {}
+  interface Z {}
+  static class C {}
+
+  void x(C c) {
+    if (c instanceof Z) {
+      A a = ((A)c); // 转换为不兼容的接口 'A'
+    }
+  }
+</code></pre>
+<!-- tooltip end -->
+
+</body>
+</html>

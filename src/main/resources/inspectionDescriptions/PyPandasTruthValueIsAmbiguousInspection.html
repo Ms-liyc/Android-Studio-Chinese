@@ -1,0 +1,26 @@
+<html>
+<body>
+<p>
+  报告布尔上下文（例如 <code>if</code>、<code>while</code> 或逻辑表达式）中 pandas <code>DataFrame</code> 或 <code>Series</code> 的模糊用法。
+  这通常会导致运行时错误：<code>ValueError: The truth value of a DataFrame is ambiguous</code>。
+</p>
+
+<p>
+  在 pandas 中，类似 <code>df</code> 或 <code>df == other</code> 的表达式不会返回单个布尔值，而是返回布尔值的 DataFrame 或 Series。 在控制流中使用这些表达式而不进行显式规约（例如 <code>.any()</code>、<code>.all()</code> 或 <code>.empty</code>）是模糊的，将会引发异常。
+</p>
+
+<p><b>示例：</b></p>
+<pre style="font-family: monospace">
+if df:  # ❌ 引发 ValueError：DataFrame 的真值不明确
+    print("DataFrame exists")
+
+if not df.empty:  # ✅ 检查 DataFrame 是否有任何行
+    print("DataFrame exists")
+</pre>
+
+<p>
+  应用该快速修复后，条件将根据上下文替换为适当的归约器，如 <code>.any()</code>、<code>.all()</code> 或 <code>.empty</code>。
+</p>
+
+</body>
+</html>

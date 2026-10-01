@@ -1,0 +1,24 @@
+<html>
+<body>
+报告紧凑的源文件，并建议将其替换为常规类。
+<p><b>示例（在文件 Sample.java 中）：</b></p>
+<pre><code>
+  void main() {
+      String a = "Hello, world!";
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+public class Sample {
+    void main() {
+        String a = "Hello, world!";
+    }
+}
+</code></pre>
+<!-- tooltip end -->
+<p>
+  此检查有助于为向后兼容早期 Java 版本而降级。
+</p>
+<p><small>2024.1 最新变化</small></p>
+</body>
+</html>

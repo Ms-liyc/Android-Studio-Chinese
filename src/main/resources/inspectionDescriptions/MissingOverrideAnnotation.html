@@ -1,0 +1,39 @@
+<html>
+<body>
+  报告重写超类方法但未使用 <code>@java.lang.Override</code> 注解的方法。
+  <p>
+  由于表明了意图，使用 <code>@java.lang.Override</code> 注解方法提高了代码可读性。
+  此外，在被重写的方法的签名与超类方法不匹配时，编译器会报错。
+  <p><b>示例：</b></p>
+  <pre><code>
+    class X {
+      public String toString() {
+        return "hello world";
+      }
+    }
+  </code></pre>
+  <p>在应用快速修复后：</p>
+  <pre><code>
+    class X {
+      @Override
+      public String toString() {
+        return "hello world";
+      }
+    }
+  </code></pre>
+<!-- tooltip end -->
+<p>配置检查：</p>
+<ul>
+  <li>
+    使用<b>忽略 'equals()'、'hashCode()' 和 'toString()'</b> 选项可以忽略这些 <code>java.lang.Object</code> 方法：<code>equals()</code>、<code>hashCode()</code> 和
+<code>toString()</code>。 由于 <code>@Override</code> 注解而使得这些方法消失且代码不再编译的风险相对较小。
+  </li>
+  <li>
+    使用<b>忽略匿名类中的方法</b>选项可以忽略匿名类中的方法。
+  </li>
+  <li>
+    禁用<b>当方法的重写方法并非全部具有 '@Override' 注解时，高亮显示该方法</b>选项，可以仅就缺少 <code>@Override</code> 注解的方法发出警告，而不就其一个或多个后代缺少 <code>@Override</code> 注解的被重写方法发出警告。
+  </li>
+</ul>
+</body>
+</html>

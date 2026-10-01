@@ -1,0 +1,16 @@
+<html>
+<body>
+<p>
+  报告声明的 <code>"env"</code> 文件不存在的 <code>langgraph.json</code>。 缺少 env 文件时，<code>langgraph dev</code> 和本地运行会读取不同的配置。
+</p>
+<p><b>示例：</b></p>
+<pre><code>
+{
+  "dependencies": ["."],
+  "graphs": { "agent": "./my_agent/agent.py:graph" },
+  "env": ".env"
+}
+</code></pre>
+<p>如果 <code>langgraph.json</code> 旁边不存在 <code>.env</code>，该路径会被高亮显示为错误。</p>
+</body>
+</html>

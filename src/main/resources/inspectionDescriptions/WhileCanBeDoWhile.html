@@ -1,0 +1,27 @@
+<html>
+<body>
+<p>
+  报告可以更有效地编写为 <code>do-while</code> 循环的 <code>while</code> 循环。
+  存在循环之前的代码与循环主体中的代码相同的 <code>while</code> 循环。
+  替换为 <code>do-while</code> 循环会移除重复的代码。
+  对于没有此类重复代码的 <code>while</code> 循环，编辑器中也提供了快速修复，但没有高亮显示。
+</p>
+<p><b>示例：</b></p>
+<pre><code>
+  foo();
+  while (x) {
+      foo();
+  }
+</code></pre>
+<p>可以替换为：</p>
+<pre><code>
+  do {
+    foo();
+  } while (x);
+</code></pre>
+<!-- tooltip end -->
+<p>
+  <small>2024.1 最新变化</small>
+</p>
+</body>
+</html>

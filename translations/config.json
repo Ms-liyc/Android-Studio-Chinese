@@ -1,0 +1,11 @@
+{
+  "enDir": "translations/en",
+  "zhDir": "translations/zh-CN",
+  "targetDir": "src/main/resources",
+  "glossaryPath": "translations/glossary.csv",
+  "glossaryKeysPath": "translations/glossary-keys.csv",
+  "exclusionsPath": "translations/exclusions.txt",
+  "statePath": "translations/.state.json",
+  "workDir": "translations/work",
+  "filePatterns": ["*.properties", "*.html", "*.xml"]
+}

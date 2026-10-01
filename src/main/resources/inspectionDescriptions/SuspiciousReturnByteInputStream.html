@@ -1,0 +1,50 @@
+<html>
+<body>
+报告从实现 <code>InputStream.read()</code> 方法的方法返回的 <code>byte</code> 类型的表达式。
+<p>
+  这很可疑，因为 <code>InputStream.read()</code> 应返回范围从 <code>0</code> 到 <code>255</code> 的值，而字节类型的表达式包含从 <code>-128</code> 到 <code>127</code> 的值。
+  该快速修复会通过应用位掩码 <code>0xFF</code> 将表达式转换为无符号 <code>byte</code>。
+</p>
+<p><b>示例：</b></p>
+<pre><code lang="java">
+class MyInputStream extends InputStream {
+  int pos = 0;
+  byte[] data;
+
+  MyInputStream(byte[] input) {
+    data = input;
+  }
+
+  @Override
+  public int read() {
+    if (pos == data.length) {
+      return -1;
+    }
+    return data[pos++]; // 问题
+  }
+}
+</code></pre>
+<p>应用该快速修复后：</p>
+<pre><code>
+class MyInputStream extends InputStream {
+  int pos = 0;
+  byte[] data;
+
+  MyInputStream(byte[] input) {
+    data = input;
+  }
+
+  @Override
+  public int read() {
+    if (pos == data.length) {
+      return -1;
+    }
+    return data[pos++] & 0xFF;
+  }
+}
+</code></pre>
+
+<!-- tooltip end -->
+<p><small>2023.2 最新变化</small></p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+<body>
+<p>此检查旨在识别潜在的脆弱代码段，在这些代码段中，从潜在的不可靠来源获得的数据可能用于构成安全风险的操作中。</p>
+
+<p>数据流跟踪：</p>
+
+<p>该检查会跟踪数据流，从来源到其在关键操作中的用法。
+  这包括分析通过方法、对象和变量的数据传输。</p>
+
+<p>考虑一个示例，其中用户输入直接用于 SQL 查询，而没有进行适当的预处理。
+  该检查将发出有关潜在的 SQL 注入的警告。</p>
+<pre>
+String userInput = getUserInput();
+String sqlQuery = "SELECT * FROM users WHERE username = '" + userInput + "'";
+</pre>
+</body>
+</html>

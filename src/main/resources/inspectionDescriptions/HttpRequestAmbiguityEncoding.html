@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>
+  检测编码的查询字符串中的 '+'。 是否应该编码为空格还是 '+' 字符不明确。
+</p>
+<p><b>示例：</b></p>
+<pre><code>
+  GET https://example.com/api?name=John+Doe%40example.com
+</code></pre>
+<p>在应用快速修复后</p>
+<pre><code>
+  GET https://example.com/api?name=John%20Doe%40example.com
+</code></pre>
+</body>
+</html>

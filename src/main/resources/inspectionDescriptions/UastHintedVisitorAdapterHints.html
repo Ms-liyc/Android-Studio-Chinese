@@ -1,0 +1,55 @@
+<html>
+<body>
+报告 <code>UastHintedVisitorAdapter</code> 创建中缺少或冗余的提示。
+<p>
+  <code>UastHintedVisitorAdapter</code> 可以接收提示，这些提示允许通过仅访问提示列表中指定的类的元素来优化 UAST 访问器执行。
+</p>
+<p>
+  例如，如果访问器实现了 <code>visitCallExpression</code> 方法，但没有在提示中包括 <code>UCallExpression</code>，则该方法将不会被执行。
+</p>
+<p>
+  例如，如果访问器没有实现 <code>visitCallExpression</code> 方法，但在提示中包括了 <code>UCallExpression</code>，则继承的方法将被不必要地执行。
+</p>
+
+<h3>示例</h3>
+
+<pre><code lang="kotlin">
+return UastHintedVisitorAdapter.create(
+  language,
+  object : AbstractUastNonRecursiveVisitor() {
+    override fun visitForExpression(node: UForExpression): Boolean {
+      inspectLoopExpression()
+      return true
+    }
+
+    override fun visitDoWhileExpression(node: UDoWhileExpression): Boolean { // 运行时未使用
+      inspectLoopExpression()
+      return true
+    }
+    //...
+  },
+  arrayOf(UForExpression::class.java) // 错误：缺少 UDoWhileExpression::class.java
+)
+</code></pre>
+
+<pre><code lang="kotlin">
+UastHintedVisitorAdapter.create(
+  language,
+  object : AbstractUastNonRecursiveVisitor() {
+    override fun visitForExpression(node: UForExpression): Boolean {
+      inspectLoopExpression()
+      return true
+    }
+    //...
+  },
+  arrayOf(
+    UForExpression::class.java,
+    UDoWhileExpression::class.java // 错误：访问 UDoWhileExpression 未实现
+  )
+)
+</code></pre>
+
+<!-- tooltip end -->
+<p><small>2024.2 最新变化</small>
+</body>
+</html>

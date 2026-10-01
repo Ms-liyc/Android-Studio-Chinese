@@ -1,0 +1,11 @@
+# 不需要翻译的 key 模式（每行一条，支持 * 通配符）
+# 示例:
+# *.internal.*
+# action.*.synonym
+
+# JetBrains / Google 产品标识
+*.jetbrains.*
+*.google.*
+
+# 技术缩写通常保持英文
+*.abbreviation

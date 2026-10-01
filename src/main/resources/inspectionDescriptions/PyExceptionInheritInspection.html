@@ -1,0 +1,23 @@
+<html>
+<body>
+<p>报告 raise 的自定义异常类不是继承自<a href="https://docs.python.org/3/library/exceptions.html">内置 Exception 类</a>的情况。</p>
+<p><b>示例：</b></p>
+<pre><code>
+class A:
+    pass
+
+
+def me_exception():
+    raise A()
+</code></pre>
+<p>执行提议的快速修复后，代码变为：</p>
+<pre><code>
+class A(Exception):
+    pass
+
+
+def me_exception():
+    raise A()
+</code></pre>
+</body>
+</html>

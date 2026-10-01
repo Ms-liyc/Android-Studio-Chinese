@@ -1,0 +1,19 @@
+<html>
+<body>
+报告可以用 <code>@FunctionalInterface</code> 注解的接口。
+<p>使用 <code>@FunctionalInterface</code> 对接口进行注解会指示该接口为函数式接口，不能再向其添加其他 <code>abstract</code> 方法。</p>
+<p><b>示例：</b></p>
+<pre><code>
+  interface FileProcessor {
+    void execute(File file);
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  @FunctionalInterface
+  interface FileProcessor {
+    void execute(File file);
+  }
+</code></pre>
+</body>
+</html>

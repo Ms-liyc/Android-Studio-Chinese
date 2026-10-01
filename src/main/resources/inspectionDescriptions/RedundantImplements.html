@@ -1,0 +1,23 @@
+<html>
+<body>
+报告类的 <code>implements</code> 列表或接口的 <code>extends</code> 列表中已经由超类实现或由超接口扩展的接口。
+此类声明不必要，并且可以安全移除。
+<p><b>示例：</b></p>
+<pre><code>
+  class X implements One, Two {
+  }
+  interface One {}
+  interface Two extends One {}
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  class X implements Two {
+  }
+  interface One {}
+  interface Two extends One {}
+</code></pre>
+<!-- tooltip end -->
+<p>
+使用该选项可以不报告 <code>extends</code> 或 <code>implements</code> 列表中的 <code>Serializable</code> 或 <code>Externalizable</code>。
+</body>
+</html>

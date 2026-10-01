@@ -1,0 +1,22 @@
+<html>
+<body>
+报告冗余且可被替换为局部变量的方法形参。
+<p>如果一个形参的所有用法都紧跟对该形参的赋值，则该形参可被替换为局部变量。
+此类形参是没有必要的，因为传递给它的值会被覆盖。
+  此问题通常是重构的结果。</p>
+<p>示例：</p>
+<pre><code>
+  void test(int p) {
+    p = 1;
+    System.out.print(p);
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  void test() {
+    int p = 1;
+    System.out.print(p);
+  }
+</code></pre>
+</body>
+</html>

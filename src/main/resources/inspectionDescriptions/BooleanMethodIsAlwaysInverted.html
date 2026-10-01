@@ -1,0 +1,38 @@
+<html>
+<body>
+报告返回值类型为 <code>boolean</code> 且在调用时始终求反的方法。
+<p>提供了一种快速修复方法来反转并可选择地重命名该方法。
+  由于性能原因，并不是所有有问题的方法都会在编辑器中高亮显示。</p>
+<p>示例：</p>
+<pre><code>
+  class C {
+    boolean alwaysTrue() {
+      return true;
+    }
+
+    void f() {
+      if (!alwaysTrue()) {
+        return;
+      }
+    }
+    boolean member = !alwaysTrue();
+  }
+</code></pre>
+<p>在应用快速修复后：</p>
+<pre><code>
+  class C {
+    boolean alwaysFalse() {
+      return false;
+    }
+
+    void f() {
+      if (alwaysFalse()) {
+        return;
+      }
+    }
+    boolean member = alwaysFalse();
+  }
+</code></pre>
+<!-- tooltip end -->
+</body>
+</html>
